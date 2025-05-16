@@ -26,7 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent, useCallback } from "react";
 
 // Updated Story interface to better match Prisma model
 interface Story {
@@ -133,7 +133,7 @@ export default function Home() {
   });
   const [createStoryError, setCreateStoryError] = useState<string | null>(null);
 
-  const fetchStories = async () => {
+  const fetchStories = useCallback(async () => {
     if (status === "authenticated") {
       setIsLoadingStories(true);
       try {
@@ -145,16 +145,16 @@ export default function Home() {
         setStories(data);
       } catch (error) {
         console.error("Error fetching stories:", error);
-        setStories([]); // Set to empty or handle error state appropriately
+        setStories([]);
       } finally {
         setIsLoadingStories(false);
       }
     }
-  };
+  }, [status]);
 
   useEffect(() => {
     fetchStories();
-  }, [status, fetchStories]);
+  }, [fetchStories]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
