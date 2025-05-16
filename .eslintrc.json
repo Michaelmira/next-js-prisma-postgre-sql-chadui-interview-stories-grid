@@ -1,0 +1,14 @@
+{
+  "extends": "next/core-web-vitals",
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "out/",
+    "public/build/",
+    "src/generated/**",
+    ".prisma/client/**"
+  ],
+  "rules": {
+    // You can add specific rule overrides here if needed later
+  }
+} 
