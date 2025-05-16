@@ -11,7 +11,7 @@ interface AuthorizeUser extends NextAuthUserFromLib {
     id: string;
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
