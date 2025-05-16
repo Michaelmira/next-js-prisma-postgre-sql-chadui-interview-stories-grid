@@ -60,4 +60,6 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
-}; 
+};
+
+// Minor change to trigger new commit 
