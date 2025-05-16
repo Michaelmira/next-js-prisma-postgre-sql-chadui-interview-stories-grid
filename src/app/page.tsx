@@ -154,7 +154,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchStories();
-  }, [status]);
+  }, [status, fetchStories]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -188,9 +188,10 @@ export default function Home() {
       setIsCreateStoryDialogOpen(false); // Close dialog
       await fetchStories(); // Refresh stories list
 
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error creating story:", error);
-      setCreateStoryError(error.message || "An unexpected error occurred.");
+      // Changed error: any to error: unknown, and used (error as Error).message
+      setCreateStoryError((error as Error).message || "An unexpected error occurred.");
     }
   };
 
@@ -221,7 +222,7 @@ export default function Home() {
               <DialogHeader>
                 <DialogTitle>Create New Interview Story</DialogTitle>
                 <DialogDescription>
-                  Fill in the details for your new story. Click save when you're done.
+                  Fill in the details for your new story. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleCreateStorySubmit} className="grid gap-4 py-4">

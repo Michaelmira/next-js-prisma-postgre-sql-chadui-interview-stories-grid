@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
-import { Session, User as NextAuthUserFromLib } from "next-auth";
-import { JWT } from "next-auth/jwt";
-import { AdapterUser } from "next-auth/adapters";
+// Session, NextAuthUserFromLib, JWT, AdapterUser removed as they are unused
+
 import { authOptions } from "@/lib/authOptions";
 
 const handler = NextAuth(authOptions);
