@@ -39,6 +39,7 @@ interface Story {
   userId: string;
 }
 
+
 interface NewStoryData {
   title: string;
   shortDescription: string;
